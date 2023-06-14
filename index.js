@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 
 
 const PORT = 8081;
-const HOST = 'https://easy-blue-cod-toga.cyclic.app';
+const HOST = 'https://lazy-blue-hen-robe.cyclic.app';
 
 //App
 const app = express()

@@ -1,31 +1,8 @@
-//create express server
 
-//publish online
-
-//call db for update
-
-'use strict';
-
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-
-
-
-const PORT = 8080;
-const HOST = 'https://lazy-blue-hen-robe.cyclic.app';
-
-//App
-const app = express()
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json())
-
-app.get('/', (req,res) => {
-    res.send("Hello, xkcd server is running ...")
-});
-
-app.get('/getcomic', (req, res) => {
+var http = require('http');
+http.createServer(function (req, res) {
+    if (req.method === 'GET') {
+      // Handle the GET request here
     const options = {method: 'GET',headers: {Accept: 'application/json', 'Content-Type': 'application/json'}};
     fetch('https://xkcd.com/info.0.json', options)
     .then(response => {
@@ -36,14 +13,15 @@ app.get('/getcomic', (req, res) => {
       })
       .then(data => {
         // Handle the data from the response
-        res.send(data.img)
+        res.end(data.img)
       })
       .catch(error => {
         // Handle any errors that occurred during the fetch request
         console.error(error);
       });
-});
-
-//app.listen(PORT, () => {console.log('http://localhost:'+PORT)})
-exports.app = app;
+      res.statusCode = 200; // Set the status code for the response
+      //res.setHeader('Content-Type', 'text/plain'); // Set the response content type
+      //res.end('Hello, world!'); // Send the response
+    }
+}).listen(process.env.PORT || 3000);
 

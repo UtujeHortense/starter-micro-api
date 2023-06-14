@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 
 
 
-const PORT = 3000;
+const PORT = 8080;
 const HOST = 'https://lazy-blue-hen-robe.cyclic.app';
 
 //App
@@ -42,7 +42,7 @@ app.get('/getcomic', (req, res) => {
         // Handle any errors that occurred during the fetch request
         console.error(error);
       });
-})
+});
 
 //app.listen(PORT, () => {console.log('http://localhost:'+PORT)})
 exports.app = app;
